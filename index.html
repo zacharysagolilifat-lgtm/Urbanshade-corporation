@@ -471,20 +471,28 @@ function submitApplication() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-    // sessionStorage is intentionally used instead of localStorage.
-    // A newly opened tab has no previous applicant's data.
-    if (sessionStorage.getItem(STORAGE_KEY) === "selected") {
-        showSelected();
-    } else {
-        // Always start a fresh form when this tab has no registration status.
-        document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"], textarea')
-            .forEach(field => field.value = "");
-        document.querySelectorAll('input[type="radio"], input[type="checkbox"]')
-            .forEach(field => field.checked = false);
-        document.getElementById("error").style.display = "none";
-        document.getElementById("success").style.display = "none";
-        document.getElementById("refreshNotice").style.display = "none";
-    }
+    // Every page load is a completely fresh registration.
+    // Remove data saved by this form, including data from older versions.
+    sessionStorage.clear();
+    localStorage.removeItem(STORAGE_KEY);
+
+    // Clear all entered answers and selections.
+    document.querySelectorAll('input, textarea').forEach((field) => {
+        if (field.type === "radio" || field.type === "checkbox") {
+            field.checked = false;
+        } else {
+            field.value = "";
+        }
+    });
+
+    document.getElementById("error").style.display = "none";
+    document.getElementById("success").style.display = "none";
+    document.getElementById("refreshNotice").style.display = "none";
+    document.getElementById("selected").style.display = "none";
+
+    const button = document.querySelector("button");
+    button.disabled = false;
+    button.textContent = "SUBMIT PERSONNEL REGISTRATION";
 });
 </script>
 
