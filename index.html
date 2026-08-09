@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URBANSHADE — Hadal Division Personnel Registration</title>
+<style>
+:root {
+  --bg:#05080b;
+  --panel:#101820;
+  --panel2:#0a1016;
+  --line:#52606b;
+  --text:#e5e9ec;
+  --muted:#8e999f;
+  --accent:#d7dde1;
+  --red:#b72b2b;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(100,120,135,.08), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(100,120,135,.06), transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body::before,
+body::after {
+  content:"";
+  position:fixed;
+  width:170px;
+  height:170px;
+  background-image:url("data:image/jpeg;base64,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");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:.09;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  z-index:0;
+}
+
+body::before { top:18px; left:18px; }
+body::after { bottom:18px; right:18px; transform:rotate(180deg); }
+
+.container {
+  position:relative;
+  z-index:1;
+  max-width:900px;
+  margin:40px auto;
+  padding:30px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.025), transparent 35%),
+    var(--panel);
+  border:1px solid var(--line);
+  box-shadow:0 0 0 5px rgba(255,255,255,.015), 0 20px 70px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+
+.container::before {
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:210px;
+  height:210px;
+  background-image:url("data:image/jpeg;base64,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");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:.08;
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+
+.container::after {
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:150px;
+  height:150px;
+  border-top:1px solid rgba(215,221,225,.18);
+  border-right:1px solid rgba(215,221,225,.18);
+  opacity:.6;
+  pointer-events:none;
+}
+
+h1 {
+  text-align:center;
+  letter-spacing:8px;
+  font-size:clamp(28px,5vw,46px);
+  margin-bottom:10px;
+}
+
+.subtitle {
+  text-align:center;
+  letter-spacing:3px;
+  color:#aeb7be;
+  line-height:1.6;
+}
+
+.classified-bar {
+  margin:22px 0 28px;
+  padding:9px 12px;
+  border-top:1px solid #52606b;
+  border-bottom:1px solid #52606b;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:4px;
+  color:#aeb7be;
+}
+
+h2 {
+  border-bottom:1px solid #52606b;
+  padding-bottom:10px;
+  margin-top:35px;
+  letter-spacing:2px;
+}
+
+label {
+  display:block;
+  margin-top:18px;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+input[type=text],
+input[type=number],
+input[type=email],
+textarea {
+  width:100%;
+  padding:12px;
+  background:#080d12;
+  color:white;
+  border:1px solid #46535e;
+  outline:none;
+}
+
+input:focus,
+textarea:focus {
+  border-color:#9aa6ae;
+  box-shadow:0 0 0 2px rgba(154,166,174,.08);
+}
+
+textarea {
+  height:100px;
+  resize:vertical;
+}
+
+.checkbox-group {
+  margin-top:10px;
+}
+
+.checkbox-group label {
+  font-weight:normal;
+  margin-top:8px;
+}
+
+.notice {
+  padding:18px;
+  background:#080d12;
+  border:1px solid #46535e;
+  line-height:1.6;
+}
+
+button {
+  width:100%;
+  margin-top:30px;
+  padding:16px;
+  background:#d7dde1;
+  color:#080b0e;
+  border:none;
+  font-weight:bold;
+  letter-spacing:3px;
+  cursor:pointer;
+}
+
+button:hover { background:white; }
+button:disabled { opacity:.6; cursor:wait; }
+
+#error,#success,#refreshNotice {
+  display:none;
+  margin-top:15px;
+  padding:15px;
+  text-align:center;
+  font-weight:bold;
+}
+
+#error {
+  color:#ff6255;
+  border:1px solid #ff3b30;
+  background:#180807;
+}
+
+#success {
+  color:#b9ffb9;
+  border:1px solid #5b9b5b;
+  background:#091409;
+}
+
+#refreshNotice {
+  color:#d7dde1;
+  border:1px solid #52606b;
+  background:#080d12;
+  line-height:1.6;
+}
+
+#selected {
+  display:none;
+  text-align:center;
+  margin:20px 0;
+  padding:24px;
+  border:1px solid #6c8b74;
+  background:#0a140d;
+}
+
+#selected h2 {
+  border:0;
+  margin:0 0 12px;
+  color:#c7e6cc;
+}
+
+.footer-mark {
+  margin:28px auto 0;
+  width:80px;
+  height:50px;
+  background-image:url("data:image/jpeg;base64,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");
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:.28;
+  mix-blend-mode:screen;
+}
+
+footer {
+  margin-top:35px;
+  padding-top:20px;
+  border-top:1px solid #46535e;
+  text-align:center;
+  color:#8e999f;
+  line-height:1.5;
+}
+
+@media (max-width:650px) {
+  .container { margin:15px; padding:20px; }
+  body::before, body::after { width:100px; height:100px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>URBANSHADE</h1>
+<div class="subtitle">HADAL DIVISION — PERSONNEL REGISTRATION FORM</div>
+<div class="classified-bar">INTERNAL // HADAL PERSONNEL SYSTEM // REGISTRATION NODE</div>
+
+<p>
+<strong>DOCUMENT STATUS:</strong> INTERNAL<br>
+<strong>CLEARANCE LEVEL:</strong> [ ]<br>
+<strong>FORM ID:</strong> US-HD-**-**
+</p>
+
+<h2>I. APPLICANT INFORMATION</h2>
+
+<label>Full Name</label>
+<input type="text">
+
+<label>Preferred Name / Codename</label>
+<input type="text">
+
+<label>Applicant Email</label><input type="email" name="email" required>
+<label>Age — Minimum Age: 11</label>
+<input type="number" id="age" min="0">
+
+<label>Previous Occupation</label>
+<input type="text">
+
+<label>Reason for Application</label>
+<textarea></textarea>
+
+<h2>II. ASSIGNMENT PREFERENCE</h2>
+<p>Select your preferred department: <strong>one required</strong></p>
+
+<div class="checkbox-group">
+<label><input type="radio" name="department"> Research &amp; Development</label>
+<label><input type="radio" name="department"> Facility Maintenance</label>
+<label><input type="radio" name="department"> Logistics</label>
+<label><input type="radio" name="department"> Security</label>
+<label><input type="radio" name="department"> Medical Division</label>
+<label><input type="radio" name="department"> Information &amp; Records</label>
+<label><input type="radio" name="department"> Hadal Operations</label>
+<label><input type="radio" name="department"> Other</label>
+</div>
+
+<label>Preferred Position</label>
+<input type="text">
+
+<h2>III. SKILLS &amp; EXPERIENCE</h2>
+
+<label>Relevant Skills</label>
+<textarea></textarea>
+
+<label>Previous Experience</label>
+<textarea></textarea>
+
+<label>Special Qualifications</label>
+<textarea></textarea>
+
+<h2>IV. PSYCHOLOGICAL &amp; OPERATIONAL ASSESSMENT</h2>
+
+<label>Are you capable of following orders under stressful conditions?</label>
+<div class="checkbox-group">
+<label><input type="radio" name="stress"> Yes</label>
+<label><input type="radio" name="stress"> No</label>
+<label><input type="radio" name="stress"> Depends on the order</label>
+</div>
+
+<label>Are you willing to work in isolated environments?</label>
+<div class="checkbox-group">
+<label><input type="radio" name="isolated"> Yes</label>
+<label><input type="radio" name="isolated"> No</label>
+</div>
+
+<label>Are you willing to sign a confidentiality agreement?</label>
+<div class="checkbox-group">
+<label><input type="radio" name="confidential"> Yes</label>
+<label><input type="radio" name="confidential"> No</label>
+</div>
+
+<label>Do you understand that Urbanshade operations may involve hazardous environments?</label>
+<div class="checkbox-group">
+<label><input type="radio" name="hazard"> Yes</label>
+<label><input type="radio" name="hazard"> No</label>
+</div>
+
+<h2>V. CONFIDENTIALITY AGREEMENT</h2>
+
+<div class="notice">
+By signing below, I acknowledge that information obtained during my employment with Urbanshade is confidential.
+<br><br>
+I agree not to disclose classified information, facility locations, research data, personnel records, or operational procedures to unauthorized individuals.
+<br><br>
+I understand that access to restricted information is granted only according to my assigned clearance level.
+</div>
+
+<label>Applicant Signature</label>
+<input type="text">
+
+<label>Date</label>
+<input type="text">
+
+<button type="button" onclick="submitApplication()">
+SUBMIT PERSONNEL REGISTRATION
+</button>
+
+<div id="error"></div>
+
+<div id="success"></div>
+<div id="refreshNotice"></div>
+
+<div id="selected">
+  <h2>APPLICATION STATUS: SELECTED</h2>
+  <p>Your personnel registration has been selected for the URBANSHADE — Hadal Division.</p>
+  <p><strong>Refresh the page to continue.</strong></p>
+</div>
+
+<div class="footer-mark"></div>
+
+<footer>
+<strong>URBANSHADE — HADAL DIVISION</strong>
+<br><br>
+"You are expendable. You are not expected to return."
+</footer>
+
+</div>
+
+<script>
+// Each browser tab gets its own temporary registration state.
+// Closing the tab destroys sessionStorage, so a new tab/account starts fresh.
+const STORAGE_KEY = "urbanshade_registration_status";
+
+function showSelected() {
+    document.getElementById("selected").style.display = "block";
+    document.getElementById("success").style.display = "none";
+    document.getElementById("refreshNotice").style.display = "none";
+}
+
+function submitApplication() {
+    const error = document.getElementById("error");
+    const success = document.getElementById("success");
+    const refreshNotice = document.getElementById("refreshNotice");
+    const age = Number(document.getElementById("age").value);
+
+    error.style.display = "none";
+    success.style.display = "none";
+    refreshNotice.style.display = "none";
+
+    if (!age) {
+        error.innerText = "APPLICATION REJECTED — AGE FIELD IS INCOMPLETE.";
+        error.style.display = "block";
+        return;
+    }
+
+    if (age < 11) {
+        error.innerText = "APPLICATION REJECTED — APPLICANTS MUST BE 11 OR OLDER.";
+        error.style.display = "block";
+        return;
+    }
+
+    const fields = document.querySelectorAll(
+        'input[type="text"], input[type="number"], input[type="email"], textarea'
+    );
+
+    for (const field of fields) {
+        if (!field.value.trim()) {
+            error.innerText =
+                "APPLICATION REJECTED — INCOMPLETE ANSWERS DETECTED. PLEASE COMPLETE ALL APPLICANT FIELDS.";
+            error.style.display = "block";
+            field.focus();
+            return;
+        }
+    }
+
+    for (const group of [
+        "department",
+        "stress",
+        "isolated",
+        "confidential",
+        "hazard"
+    ]) {
+        if (!document.querySelector(
+            'input[name="' + group + '"]:checked'
+        )) {
+            error.innerText =
+                "APPLICATION REJECTED — PLEASE ANSWER EVERY APPLICANT QUESTION.";
+            error.style.display = "block";
+            return;
+        }
+    }
+
+    const button = document.querySelector("button");
+    button.disabled = true;
+    button.textContent = "PROCESSING...";
+
+    // The email field remains part of the fictional form,
+    // but no email is actually sent.
+    sessionStorage.setItem(STORAGE_KEY, "pending");
+
+    success.innerText =
+        "APPLICATION RECEIVED — PROCESSING REGISTRATION.";
+    success.style.display = "block";
+
+    setTimeout(() => {
+        refreshNotice.innerHTML =
+            "<strong>REGISTRATION PROCESSING COMPLETE</strong><br><br>" +
+            "Please refresh this page in a few seconds to view your application status.";
+        refreshNotice.style.display = "block";
+
+        // Store the selected result after the delay.
+        setTimeout(() => {
+            sessionStorage.setItem(STORAGE_KEY, "selected");
+        }, 3000);
+
+        button.textContent = "REGISTRATION RECEIVED";
+    }, 3000);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    // sessionStorage is intentionally used instead of localStorage.
+    // A newly opened tab has no previous applicant's data.
+    if (sessionStorage.getItem(STORAGE_KEY) === "selected") {
+        showSelected();
+    } else {
+        // Always start a fresh form when this tab has no registration status.
+        document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"], textarea')
+            .forEach(field => field.value = "");
+        document.querySelectorAll('input[type="radio"], input[type="checkbox"]')
+            .forEach(field => field.checked = false);
+        document.getElementById("error").style.display = "none";
+        document.getElementById("success").style.display = "none";
+        document.getElementById("refreshNotice").style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>
